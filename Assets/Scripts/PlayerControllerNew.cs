@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Movement : MonoBehaviour
 {
@@ -14,9 +16,14 @@ public class Movement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
 
+    [SerializeField] TextMeshProUGUI staminaText;
+
     [SerializeField] float normalFOV = 75f;
     [SerializeField] float sprintFOV = 90f;
     [SerializeField] float fovTransitionSpeed = 5f;
+
+    [SerializeField] float staminaRegenRate = 1.0f;
+    private bool isUsingStamina = false;
 
     [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float staminaDrainRate = 0.2f;
@@ -53,6 +60,7 @@ public class Movement : MonoBehaviour
     {
         UpdateMouse();
         UpdateMove();
+        UpdateStamina();
     }
 
     void UpdateMouse()
@@ -104,6 +112,21 @@ public class Movement : MonoBehaviour
         if(isGrounded! && controller.velocity.y < -1f)
         {
             velocityY = -8f;
+        }
+    }
+
+    void UpdateStamina() {
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0;
+
+        isUsingStamina = isSprinting || Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0;
+
+        if (!isUsingStamina && currentStamina < maxStamina) {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        }
+
+        if (staminaText != null) {
+            staminaText.text = "Stamina: " + Mathf.RoundToInt(currentStamina).ToString();
         }
     }
 }
