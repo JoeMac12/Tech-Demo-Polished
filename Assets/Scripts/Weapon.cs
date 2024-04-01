@@ -107,9 +107,8 @@ public class Weapon : MonoBehaviour
             Debug.Log("Reloading...");
 
             Invoke("FinishReload", reloadSpeed);
+            StartCoroutine(RotateGun());
         }
-
-        StartCoroutine(RotateGun());
     }
 
     void UpdateAmmoText()
