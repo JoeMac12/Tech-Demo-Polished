@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class HealthManager : MonoBehaviour
     public float currentHealth;
     public float smoothTime = 0.2f;
     public Gradient healthGradient;
+    public TextMeshProUGUI healthText;
 
     private float targetFillAmount;
     private float velocity;
@@ -35,6 +37,7 @@ public class HealthManager : MonoBehaviour
 
         healthBar.fillAmount = Mathf.SmoothDamp(healthBar.fillAmount, targetFillAmount, ref velocity, smoothTime);
         healthBar.color = healthGradient.Evaluate(healthBar.fillAmount);
+        healthText.color = healthGradient.Evaluate(healthBar.fillAmount);
     }
 
     public void TakeDamage(float damage)
@@ -42,6 +45,8 @@ public class HealthManager : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         targetFillAmount = currentHealth / maxHealth;
+
+        healthText.text = currentHealth.ToString("F0");
     }
 
     public void Heal(float healingAmount)
@@ -49,5 +54,7 @@ public class HealthManager : MonoBehaviour
         currentHealth += healingAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         targetFillAmount = currentHealth / maxHealth;
+
+        healthText.text = currentHealth.ToString("F0");
     }
 }
