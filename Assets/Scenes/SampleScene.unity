@@ -3794,7 +3794,9 @@ MonoBehaviour:
   normalFOV: 75
   sprintFOV: 90
   fovTransitionSpeed: 5
-  staminaRegenRate: 5
+  baseStaminaRegenRate: 5
+  stoppedStaminaRegenRate: 15
+  staminaRegenDelay: 1
   sprintSpeed: 7
   staminaDrainRate: 10
   maxStamina: 100

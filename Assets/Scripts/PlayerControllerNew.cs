@@ -22,14 +22,16 @@ public class Movement : MonoBehaviour
     [SerializeField] float sprintFOV = 90f;
     [SerializeField] float fovTransitionSpeed = 5f;
 
-    [SerializeField] float staminaRegenRate = 1.0f;
-    private bool isUsingStamina = false;
+    [SerializeField] float baseStaminaRegenRate = 1.5f;
+    [SerializeField] float stoppedStaminaRegenRate = 3.0f;
+    [SerializeField] float staminaRegenDelay = 1.0f;
+
+    private float staminaRegenTimer = 0f;
 
     [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float staminaDrainRate = 0.2f;
     [SerializeField] float maxStamina = 100f;
     float currentStamina;
-
 
     public float jumpHeight = 6f;
     float velocityY;
@@ -117,11 +119,17 @@ public class Movement : MonoBehaviour
 
     void UpdateStamina() {
         bool isSprinting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0;
+        bool isMoving = Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0;
 
-        isUsingStamina = isSprinting || Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0;
+        if (isSprinting) {
+            staminaRegenTimer = 0f;
+        } else {
+            staminaRegenTimer += Time.deltaTime;
+        }
 
-        if (!isUsingStamina && currentStamina < maxStamina) {
-            currentStamina += staminaRegenRate * Time.deltaTime;
+        if (staminaRegenTimer >= staminaRegenDelay) {
+            float regenRate = isMoving ? baseStaminaRegenRate : stoppedStaminaRegenRate;
+            currentStamina += regenRate * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         }
 
