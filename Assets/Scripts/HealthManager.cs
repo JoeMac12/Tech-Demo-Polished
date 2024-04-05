@@ -27,7 +27,7 @@ public class HealthManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        /*if (Input.GetKeyDown(KeyCode.G))
         {
             TakeDamage(10);
         }
@@ -35,7 +35,7 @@ public class HealthManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Heal(10);
-        }
+        }*/
 
         if (currentHealth <= 0)
         {
