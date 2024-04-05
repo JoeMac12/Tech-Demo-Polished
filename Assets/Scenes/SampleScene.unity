@@ -3882,7 +3882,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 584702490}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 695935757}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &584702490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4303,6 +4315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 768973781}
+  playerMovement: {fileID: 1119315125}
+  playerWeapon: {fileID: 1119315131}
 --- !u!4 &695935758
 Transform:
   m_ObjectHideFlags: 0
@@ -10836,6 +10850,28 @@ CapsuleCollider:
   m_Height: 8.7
   m_Direction: 2
   m_Center: {x: 0, y: -0.00000047683716, z: 2.28}
+--- !u!114 &1119315125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 208043092569616178, guid: 1c5e2fcb69412444d9b123fe818fa1e9, type: 3}
+  m_PrefabInstance: {fileID: 3949313078608520882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb419545969c02d43bb0871d222a068e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1119315131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2078135150755522770, guid: 1c5e2fcb69412444d9b123fe818fa1e9, type: 3}
+  m_PrefabInstance: {fileID: 3949313078608520882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c146bf9ad475524b820abeb9026ccaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1239404212
 GameObject:
   m_ObjectHideFlags: 0

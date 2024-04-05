@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public Movement playerMovement;
+    public Weapon playerWeapon;
 
     private bool isPaused = false;
 
@@ -28,6 +30,10 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        playerMovement.enabled = true;
+        playerWeapon.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         isPaused = false;
     }
 
@@ -35,6 +41,15 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        playerMovement.enabled = false;
+        playerWeapon.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         isPaused = true;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
