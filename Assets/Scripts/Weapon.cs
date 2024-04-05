@@ -6,6 +6,7 @@ using TMPro;
 
 public class Weapon : MonoBehaviour
 {
+    public int damage = 5;
     public int clipSize = 30;
     public float fireDelay = 0.2f;
     public float reloadSpeed = 2f;
@@ -34,6 +35,8 @@ public class Weapon : MonoBehaviour
     private int currentAmmo;
     private float nextFireTime = 0f;
     private bool isReloading = false;
+
+    public BossHealth bossHealth;
 
     void Start()
     {
@@ -90,6 +93,11 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit))
         {
             Debug.Log("Hit: " + hit.transform.name);
+
+            if (hit.collider.CompareTag("Boss"))
+            {
+                bossHealth.TakeDamage(damage);
+            }
         }
 
         gunTransform.Translate(0, 0, -recoilDistance);
