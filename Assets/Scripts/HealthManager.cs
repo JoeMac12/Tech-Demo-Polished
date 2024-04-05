@@ -12,6 +12,8 @@ public class HealthManager : MonoBehaviour
     public Gradient healthGradient;
     public TextMeshProUGUI healthText;
 
+    public AudioSource death;
+
     private float targetFillAmount;
     private float velocity;
 
@@ -69,5 +71,6 @@ public class HealthManager : MonoBehaviour
     {
         transform.position = GameManager.Instance.GetCurrentCheckpointPosition();
         Heal(maxHealth);
+        death.Play();
     }
 }

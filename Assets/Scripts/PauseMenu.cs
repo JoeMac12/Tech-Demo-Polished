@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     public Movement playerMovement;
     public Weapon playerWeapon;
 
+    public AudioSource pause;
+
     private bool isPaused = false;
 
     void Update()
@@ -39,6 +41,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        pause.Play();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         playerMovement.enabled = false;

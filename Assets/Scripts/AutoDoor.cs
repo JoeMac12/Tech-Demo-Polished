@@ -12,6 +12,9 @@ public class AutoDoor : MonoBehaviour
     private bool isClosing = false;
     private Vector3 closedPosition;
 
+    public AudioSource doorSoundAudioSource;
+    public AudioSource doorSoundCloseAudioSource;
+
     void Start()
     {
         if (door != null) // Getpos of door
@@ -53,6 +56,8 @@ public class AutoDoor : MonoBehaviour
         {
             isOpening = true;
             isClosing = false;
+
+            doorSoundAudioSource.Play();
         }
     }
 
@@ -62,6 +67,8 @@ public class AutoDoor : MonoBehaviour
         {
             isOpening = false;
             isClosing = true;
+
+            doorSoundCloseAudioSource.Play();
         }
     }
 }
