@@ -21,6 +21,8 @@ public class HealthManager : MonoBehaviour
         targetFillAmount = currentHealth / maxHealth;
         healthBar.fillAmount = targetFillAmount;
         healthBar.color = healthGradient.Evaluate(targetFillAmount);
+
+        transform.position = GameManager.Instance.GetCurrentCheckpointPosition();
     }
 
     void Update()
@@ -33,6 +35,11 @@ public class HealthManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Heal(10);
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
         }
 
         healthBar.fillAmount = Mathf.SmoothDamp(healthBar.fillAmount, targetFillAmount, ref velocity, smoothTime);
@@ -56,5 +63,11 @@ public class HealthManager : MonoBehaviour
         targetFillAmount = currentHealth / maxHealth;
 
         healthText.text = currentHealth.ToString("F0");
+    }
+
+    void Die() // Kill the player and respawn at last checkpoint
+    {
+        transform.position = GameManager.Instance.GetCurrentCheckpointPosition();
+        Heal(maxHealth);
     }
 }
