@@ -7,8 +7,11 @@ public class TimerTrigger : MonoBehaviour
 {
     public GameObject textObject;
     public TextMeshProUGUI timerText;
-    private float timerDuration = 150f;
+    public float timerDuration = 150f;
     private bool timerStarted = false;
+
+    public HealthManager playerHealth;
+    public int damage = 9999;
 
     void Start()
     {
@@ -45,6 +48,8 @@ public class TimerTrigger : MonoBehaviour
         {
             textObject.SetActive(false);
             Debug.Log("Time is out");
+            timerStarted = false;
+            playerHealth.TakeDamage(damage);
         }
     }
 }

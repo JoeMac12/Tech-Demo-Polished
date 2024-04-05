@@ -20604,6 +20604,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 205238231}
   timerText: {fileID: 1788422628}
+  timerDuration: 10
+  playerHealth: {fileID: 1119315137}
+  damage: 9999
 --- !u!1 &1612435264
 GameObject:
   m_ObjectHideFlags: 0
